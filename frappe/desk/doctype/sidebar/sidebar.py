@@ -2137,7 +2137,9 @@ def filter_sidebar_items(items, perm_ctx, check_permission: bool = True):
 
 		entry = {
 			"key": key,
-			"label": _(item.label),
+			# Items are labelled with DocType names, which are singular. Languages that name a list
+			# in the plural can add a "Sidebar" variant; without one this falls back to the name.
+			"label": _(item.label, context="Sidebar"),
 			"link_to": item.link_to,
 			"link_type": item.link_type,
 			"type": item.type,
